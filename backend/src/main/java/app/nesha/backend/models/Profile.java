@@ -30,6 +30,7 @@ public class Profile implements Serializable {
     private Double financialGoal;
 
     @OneToOne(cascade = CascadeType.REFRESH, optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "profile")

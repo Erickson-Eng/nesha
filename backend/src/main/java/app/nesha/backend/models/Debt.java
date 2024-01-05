@@ -31,6 +31,11 @@ public class Debt implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private ExpenseType expenseType;
 
+    @Enumerated(value = EnumType.STRING)
+    private PaymentMethod paymentMethod;
+    private Boolean installment;
+    private Integer numberOfInstallments;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "card_id")
     private Card card;
@@ -38,4 +43,13 @@ public class Debt implements Serializable {
     @OneToOne(cascade = CascadeType.REFRESH)
     private Profile profile;
 
+
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = PaymentMethod.getEnumByCode(paymentMethod);
+    }
+
+    public void setExpenseType(String expenseType) {
+        this.expenseType = ExpenseType.getEnumByCode(expenseType);
+    }
 }
